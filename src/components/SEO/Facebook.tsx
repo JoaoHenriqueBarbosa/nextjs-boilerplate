@@ -5,7 +5,7 @@ import urljoin from 'url-join';
 interface IFacebookProps {
   url: string;
   type: string;
-  baseUrl: string;
+  imageBaseUrl?: string;
   title: string;
   desc: string;
   image: string;
@@ -14,7 +14,7 @@ interface IFacebookProps {
 
 export const Facebook: React.FC<IFacebookProps> = ({
   url,
-  baseUrl,
+  imageBaseUrl,
   type,
   title,
   desc,
@@ -27,7 +27,7 @@ export const Facebook: React.FC<IFacebookProps> = ({
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={desc} />
-    <meta property="og:image" content={urljoin(baseUrl, image)} />
+    <meta property="og:image" content={imageBaseUrl ? urljoin(imageBaseUrl, image) : image} />
     <meta property="og:image:alt" content={desc} />
   </Head>
 );

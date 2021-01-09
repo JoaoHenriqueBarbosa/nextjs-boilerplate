@@ -7,7 +7,7 @@ interface ITwitterProps {
   username: string;
   title: string;
   desc: string;
-  baseUrl: string;
+  imageBaseUrl?: string;
   image: string;
 }
 
@@ -16,7 +16,7 @@ export const Twitter: React.FC<ITwitterProps> = ({
   username,
   title,
   desc,
-  baseUrl,
+  imageBaseUrl,
   image
 }) => (
   <Head>
@@ -24,7 +24,7 @@ export const Twitter: React.FC<ITwitterProps> = ({
     <meta name="twitter:card" content={type} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={desc} />
-    <meta name="twitter:image" content={urljoin(baseUrl, image)} />
+    <meta name="twitter:image" content={imageBaseUrl ? urljoin(imageBaseUrl, image) : image} />
     <meta name="twitter:image:alt" content={desc} />
   </Head>
 );

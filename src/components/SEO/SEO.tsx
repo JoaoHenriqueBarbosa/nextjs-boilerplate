@@ -9,7 +9,7 @@ interface ISEOProps {
   siteTitle: string;
   description: string;
   pathname: string;
-  baseUrl: string;
+  imageBaseUrl?: string;
   article?: boolean;
   image: string;
   siteLanguage: string;
@@ -27,7 +27,7 @@ export const SEO: React.FC<ISEOProps> = ({
   pathname,
   article = false,
   image,
-  baseUrl,
+  imageBaseUrl,
   siteLanguage,
   siteLocale,
   twitterUsername,
@@ -81,7 +81,7 @@ export const SEO: React.FC<ISEOProps> = ({
     dateModified: seo.dateModified,
     image: {
       '@type': 'ImageObject',
-      url: `${urljoin(baseUrl, image)}`
+      url: `${imageBaseUrl ? urljoin(imageBaseUrl, image) : image}`
     }
   };
 
@@ -122,7 +122,7 @@ export const SEO: React.FC<ISEOProps> = ({
         name: author,
         logo: {
           '@type': 'ImageObject',
-          url: `${urljoin(baseUrl, image)}`
+          url: `${imageBaseUrl ? urljoin(imageBaseUrl, image) : image}`
         }
       },
       datePublished: seo.datePublished,
@@ -134,7 +134,7 @@ export const SEO: React.FC<ISEOProps> = ({
       name: seo.title,
       image: {
         '@type': 'ImageObject',
-        url: urljoin(baseUrl, image)
+        url: imageBaseUrl ? urljoin(imageBaseUrl, image) : image
       },
       mainEntityOfPage: pathname
     };
@@ -186,13 +186,13 @@ export const SEO: React.FC<ISEOProps> = ({
             title={seo.title}
             type={article ? 'article' : 'website'}
             url={pathname}
-            baseUrl={baseUrl}
-            locale={siteLocale || 'en_gb'}
+            imageBaseUrl={imageBaseUrl}
+            locale={siteLocale || 'pt_BR'}
           />
           <Twitter
             title={seo.title}
             image={image}
-            baseUrl={baseUrl}
+            imageBaseUrl={imageBaseUrl}
             desc={seo.description}
             username={twitterUsername}
           />

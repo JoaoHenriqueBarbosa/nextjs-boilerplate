@@ -12,7 +12,7 @@ const Home: React.FC = () => {
         description={config.description}
         image={config.logo}
         pathname={config.siteUrl}
-        baseUrl={config.siteUrl}
+        imageBaseUrl={config.siteUrl}
         siteLanguage="pt-BR"
         siteLocale="BR"
         twitterUsername={config.twitter}
